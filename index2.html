@@ -7,19 +7,21 @@
     <title>Document</title>
     <link rel='stylesheet' href='style.css'>
     <style>
-        body{
-            margin:0;
+        body {
+            margin: 0;
         }
+
         .container {
             width: 300vw;
             display: flex;
         }
-        .inner{
+
+        .inner {
             width: 100vw;
             /* float: left; */
         }
 
-        img{
+        img {
             width: 100%;
             height: 600px;
         }
@@ -38,30 +40,28 @@
     <button class="next">next</button>
 
     <script>
-        const length = 3;
-        let index =1;
-        let move =''
-        document.querySelector('.next').addEventListener('click',function(){
-            if(index<length){
-                const scale = (index *100).toString()                
+        const length = 2;
+        let index = 0;
+        let move = ''
+        document.querySelector('.next').addEventListener('click', function () {
+            if (index < length) {
+                index++
+                const scale = (index * 100).toString()
                 move = `translate(-${scale}vw)`
-                console.log(scale)
-                console.log(move)
-            }
-            document.querySelector('.container').style.transform = move;
-            index++
-        })
-        document.querySelector('.prev').addEventListener('click',
-        function(){
-            index--
-            if (index >0) {
-                const scale = (index * 100 -100).toString()
-                move = `translate(${scale}vw)`
             }
             document.querySelector('.container').style.transform = move;
             
         })
-        
+        document.querySelector('.prev').addEventListener('click',
+            function () {
+                if (index > 0) {
+                    index--
+                    const scale = (index * 100).toString()
+                    move = `translate(-${scale}vw)`
+                }
+                document.querySelector('.container').style.transform = move;
+            })
+
     </script>
     <script src='script.js'></script>
 </body>

@@ -11,7 +11,7 @@
             margin:0;
         }
         .container {
-            width: 300vw;
+            position: relative;
             display: flex;
         }
         .inner{
@@ -29,25 +29,97 @@
 <body style="margin: 0">
     <div style="overflow: hidden">
         <div class="container">
-            <div class="inner"><img src="001.png" alt=""></div>
-            <div class="inner"><img src="002.png" alt=""></div>
-            <div class="inner"><img src="003.png" alt=""></div>
+            <!-- <div class="inner"><img src="001.png" alt=""></div> -->
+            <!-- <div class="inner"><img src="002.png" alt=""></div> -->
+            <!-- <div class="inner"><img src="003.png" alt=""></div> -->
         </div>
     </div>
-    <button class="버튼1">1</button>
-    <button class="버튼2">2</button>
-    <button class="버튼3">3</button>
+    <!-- <button class="버튼1">1</button> -->
+    <!-- <button class="버튼2">2</button> -->
+    <!-- <button class="버튼3">3</button> -->
 
     <script>
-        document.querySelector('.버튼2').addEventListener('click',function(){
-            document.querySelector('.container').style.transform = 'translate(-100vw)';
+        const body = document.querySelector('body')
+        const btnContainer1 = document.createElement('div')
+        btnContainer1.style.width = '100vw'
+        btnContainer1.style.display ='flex'
+        btnContainer1.style.justifyContent = 'center'
+        const container = document.querySelector('.container')
+        container.style.width = '600vw';
+        for(let i=1; i<7; i++){
+            const inner = document.createElement('div')
+            inner.style.width = '100vw';
+            const img = document.createElement('img')
+            img.style.width = '100%'
+            img.style.height ='700px'
+            const button = document.createElement('button')
+            img.src = `00${i}.png`;
+            inner.appendChild(img)
+            container.appendChild(inner)
+
+            button.innerText = `${i}`;
+            button.addEventListener('click', function(){
+                const scale = ((i-1)*100).toString()
+                container.style.transform = `translate(-${scale}vw)`
+                console.log(scale)
+            })
+            btnContainer1.appendChild(button)
+        }
+        body.appendChild(btnContainer1)
+
+        const btnContainer2 = document.createElement('div')
+        btnContainer2.style.position = 'absolute';
+            btnContainer2.style.top= '50%'
+            btnContainer2.style.transform= 'translateY(-50%)'
+            btnContainer2.style.display= 'flex'
+            btnContainer2.style.justifyContent= 'space-between'
+            btnContainer2.style.width= '100%'
+            btnContainer2.style.padding= '0 20px'
+            btnContainer2.style.boxSizing= 'border-box'
+        
+        
+        const btnPrev = document.createElement('button')
+        const btnNext = document.createElement('button')
+        btnPrev.innerText = '<'
+        btnNext.innerText = '>' 
+        btnPrev.style.backgroundColor= 'rgba(195, 179, 179, 0.5)'
+            btnPrev.style.border= 'none'
+            btnPrev.style.padding= '10px 20px'
+            btnPrev.style.cursor= 'pointer'
+            btnPrev.style.fontSize ='30px'
+            btnPrev.style.color = '#333131'
+        
+        btnNext.style.backgroundColor= 'rgba(195, 179, 179, 0.5)'
+            btnNext.style.border='none'
+            btnNext.style.padding= '10px 20px'
+            btnNext.style.cursor= 'pointer'
+            btnNext.style.fontSize = '30px'
+            btnNext.style.color = '#333131'
+        
+        const length = 5;
+        let index = 0;
+        let move = ''
+        btnPrev.addEventListener('click', function(){
+            if (index > 0) {
+                index--
+                const scale = (index * 100).toString()
+                move = `translate(-${scale}vw)`
+            }
+            container.style.transform = move;
         })
-        document.querySelector('.버튼3').addEventListener('click',function(){
-            document.querySelector('.container').style.transform = 'translate(-200vw)';
+        btnNext.addEventListener('click', function(){
+            if (index < length) {
+                index++
+                const scale = (index * 100).toString()
+                move = `translate(-${scale}vw)`
+            }
+            container.style.transform = move;
         })
-        document.querySelector('.버튼1').addEventListener('click',function(){
-            document.querySelector('.container').style.transform = 'translate(0vw)';
-        })
+        
+        btnContainer2.appendChild(btnPrev)
+        btnContainer2.appendChild(btnNext)
+        body.appendChild(btnContainer2)
+
     </script>
     <script src='script.js'></script>
 </body>
