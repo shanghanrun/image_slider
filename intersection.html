@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='style.css'>
+    <style>
+        body{
+            background: black;
+            height: 6000px;
+        }
+        div{
+            margin-top: 1000px;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transform: rotate(-720deg);
+            transition: all 3s;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>iPhone 15 출시</h1>
+    </div>
+    <div>
+        <h1>충전포트를 USB-C 타입으로</h1>
+    </div>
+    <div>
+        <h1>충전 포트를 제거했음</h1>
+    </div>
+    <div>
+        <img src="001.png" alt="">
+    </div>
+    
+    <script>
+        let observer = new IntersectionObserver((e)=>{
+            console.log(e);
+            e.forEach( inter =>{
+                if(inter.isIntersecting){
+                    inter.target.style.opacity ='1';
+                    inter.target.style.transform = 'rotate(0deg)'
+                } else{
+                    inter.target.style.opacity = '0';
+                    inter.target.style.transform = 'rotate(-720deg)'
+                }
+                console.log(inter.intersectionRatio)
+            })
+        })
+        let divs = document.querySelectorAll('div')
+        observer.observe(divs[0]);
+        observer.observe(divs[1]);
+        observer.observe(divs[2]);
+        observer.observe(divs[3]);
+
+    </script>
+</body>
+</html>
