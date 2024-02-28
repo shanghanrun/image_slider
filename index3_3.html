@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='style.css'>
+    <style>
+        body {}
+
+        .container {
+            margin-left: 20px;
+            position: relative;
+            display: flex;
+            justify-content: space-evenly
+        }
+
+        .inner {
+            width: 100vw;
+            /* float: left; */
+        }
+
+        img {
+            width: 80%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body style="margin: 0">
+    <div style="overflow: hidden">
+        <div class="container">
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            "https://image.tmdb.org/t/p/w500//6yrDUJyl1naOn3zfOhFPE9ZGsfP.jpg",
+            "https://image.tmdb.org/t/p/w500//2xE3NI6zElWhwN9WJ92fqbZKmzZ.jpg",
+            "https://image.tmdb.org/t/p/w500//qApkjVJzZ2nkFUcFhcYkTBaRnNj.jpg",
+            "https://image.tmdb.org/t/p/w500//uyM1tesNMM7fg6zmozn8MYD036G.jpg",
+            "https://image.tmdb.org/t/p/w500//g5mGMbiZLvgEf628D60GQrPHFJC.jpg",
+            "https://image.tmdb.org/t/p/w500//aD666IiuBDU57KvpujqzduLgWDe.jpg",
+            "https://image.tmdb.org/t/p/w500//rieMzC6JJoMVbsaUv6Rzj0fR7Px.jpg",
+            "https://image.tmdb.org/t/p/w500//uQkiDKQyun13mqsOXv7I5MRKr0q.jpg",
+            "https://image.tmdb.org/t/p/w500//oMTuRG8koeKqH2tVonaWhyp7OBw.jpg",
+            "https://image.tmdb.org/t/p/w500//wKCKKur7LyGFaUHmNhvy7FhIjmC.jpg",
+            "https://image.tmdb.org/t/p/w500//xiLFc19JANfAZHbecqoCFpmtiUV.jpg",
+            "https://image.tmdb.org/t/p/w500//46sp1Z9b2PPTgCMyA87g9aTLUXi.jpg",
+            "https://image.tmdb.org/t/p/w500//lnOgP8Fl2dQ73d4Qu24O2zcKFFS.jpg",
+            "https://image.tmdb.org/t/p/w500//eDps1ZhI8IOlbEC7nFg6eTk4jnb.jpg",
+            "https://image.tmdb.org/t/p/w500//2SGn4sc7JKfkOHEr5byJGW4M1oN.jpg",
+            "https://image.tmdb.org/t/p/w500//9f9YsmXoy9ghqZKIVuKHkmGGZCY.jpg",
+            "https://image.tmdb.org/t/p/w500//7MhXiTmTl16LwXNPbWCmqxj7UxH.jpg",
+            "https://image.tmdb.org/t/p/w500//A7EByudX0eOzlkQ2FIbogzyazm2.jpg",
+            "https://image.tmdb.org/t/p/w500//7zV8FTYofAORGm0Umgh1mNNCym8.jpg",
+            "https://image.tmdb.org/t/p/w500//usDIBB0hOqLM8wMSGistfqxjukZ.jpg"
+        ]
+
+
+        const body = document.querySelector('body')
+        const btnContainer1 = document.createElement('div')
+        btnContainer1.style.width = '100vw'
+        btnContainer1.style.display = 'flex'
+        btnContainer1.style.justifyContent = 'center'
+        const container = document.querySelector('.container')
+        const dataLength = data.length;
+        const imagesPerPage = 5;
+        const imgWidthPercentage = 100 / imagesPerPage; // 각 이미지의 너비를 설정합니다.
+        const containerWidthPercentage = imgWidthPercentage * dataLength; // 컨테이너의 너비를 설정합니다.
+
+        container.style.width = `${containerWidthPercentage}vw`; // 컨테이너의 너비를 설정합니다.
+        /*container.style.width = `${100 * dataLength}vw`;*/
+        for (let i = 0; i < dataLength; i++) {
+            const inner = document.createElement('div')
+            inner.style.width = `${imgWidthPercentage}vw`; // 각 이미지의 너비를 설정합니다.
+            /*inner.style.width = '100vw';*/
+            const img = document.createElement('img')
+            /*img.style.width = '100%'*/
+            /* img.style.height = '300px'*/
+            const button = document.createElement('button')
+            img.src = `${data[i]}`;
+            inner.appendChild(img)
+            container.appendChild(inner)
+
+
+        }
+
+        const btnContainer2 = document.createElement('div')
+        btnContainer2.style.position = 'absolute';
+        btnContainer2.style.top = '25%'
+        btnContainer2.style.transform = 'translateY(-50%)'
+        btnContainer2.style.display = 'flex'
+        btnContainer2.style.justifyContent = 'space-between'
+        btnContainer2.style.width = '100%'
+        btnContainer2.style.padding = '0 20px'
+        btnContainer2.style.boxSizing = 'border-box'
+
+
+        const btnPrev = document.createElement('button')
+        const btnNext = document.createElement('button')
+        btnPrev.innerText = '<'
+        btnNext.innerText = '>'
+        btnPrev.style.backgroundColor = 'rgba(195, 179, 179, 0.5)'
+        btnPrev.style.border = 'none'
+        btnPrev.style.padding = '10px 20px'
+        btnPrev.style.cursor = 'pointer'
+        btnPrev.style.fontSize = '30px'
+        btnPrev.style.color = '#333131'
+
+        btnNext.style.backgroundColor = 'rgba(195, 179, 179, 0.5)'
+        btnNext.style.border = 'none'
+        btnNext.style.padding = '10px 20px'
+        btnNext.style.cursor = 'pointer'
+        btnNext.style.fontSize = '30px'
+        btnNext.style.color = '#333131'
+
+        const length = Math.ceil(dataLength / imagesPerPage);
+        let index = 0;
+        let move = ''
+        btnPrev.addEventListener('click', function () {
+            if (index > 0) {
+                index--
+                const scale = (index * 100).toString()
+                move = `translate(-${scale}vw)`
+            }
+            container.style.transform = move;
+        })
+        btnNext.addEventListener('click', function () {
+            console.log('index: ', index)
+            if (index < length - 2) {
+                index++
+                const scale = (index * 100).toString()
+                move = `translate(-${scale}vw)`
+            }
+            container.style.transform = move;
+        })
+
+        btnContainer2.appendChild(btnPrev)
+        btnContainer2.appendChild(btnNext)
+        body.appendChild(btnContainer2)
+
+    </script>
+    <script src='script.js'></script>
+</body>
+
+</html>
